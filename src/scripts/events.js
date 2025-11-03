@@ -1,7 +1,3 @@
-/**
- * Responsabilidad: gestionar los eventos
- * */ 
-
 import { evaluateResult, clearError, clearInput } from './dom.js';
 
 const prepareSubmitButton = () => {

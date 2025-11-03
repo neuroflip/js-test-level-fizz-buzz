@@ -1,5 +1,4 @@
 import { expect, describe, test, jest } from "@jest/globals";
-//import { evaluateResult, clearError, clearInput } from '../src/scripts/dom';
 
 let fizzBuzzMocked = {
   fizzBuzz: jest.fn()

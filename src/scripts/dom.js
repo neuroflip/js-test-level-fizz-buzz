@@ -1,7 +1,3 @@
-/**
- * Responsabilidad: gestionar el los flujos de que recibe y muestra la interfáz
- * */ 
-
 import { fizzBuzz, OK , KO } from "./fizzBuzz.js";
 
 const resultsData = [];
