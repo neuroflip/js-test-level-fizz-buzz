@@ -14,8 +14,8 @@
 const FIZZ = 'Fizz';
 const BUZZ = 'Buzz';
 const FIZZBUZZ = 'FizzBuzz';
-const OK = 'OK';
-const KO = 'KO';
+const OK = 'Ok';
+const KO = 'Ko';
 
 const isMultipleOfNumber = (number, multiple) => number % multiple === 0;
 const isMultiple3 = (number) => isMultipleOfNumber(number, 3);
@@ -37,24 +37,24 @@ const isNumericValue = (value) => {
   return !isNaN(Number(value));
 }
 
-const getResult = (number) => {
+const fizzBuzz = (number) => {
     let result; 
 
     if (isNumericValue(number)) {
         if (isMultiple3AndNot5(number)) {
-        result = fillResult(OK, '', number, FIZZ);
+        result = fillResult(OK, 'El número es divisible por 3', number, FIZZ);
         } else if (isMultiple5AndNot3(number)) {
-        result = fillResult(OK, '', number, BUZZ);
+        result = fillResult(OK, 'El número es divisible por 5', number, BUZZ);
         } else if (isMultiple3And5(number)) {
-        result = fillResult(OK, '', number, FIZZBUZZ);
+        result = fillResult(OK, 'El número es divisible por 3 y por 5', number, FIZZBUZZ);
         } else {
-        result = fillResult(OK, '', number, number);
+        result = fillResult(OK, 'El número no es divisible por 3 ni por 5', number, number);
         }
     } else {
-        result = fillResult(KO, 'The input value is not numeric', 0, '');
+        result = fillResult(KO, 'El valor de entrada no es un numero', Number.NaN, Number.NaN);
     }
 
     return result;
 }
 
-export { getResult, OK, KO };
+export { fizzBuzz, OK, KO };

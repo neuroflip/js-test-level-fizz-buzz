@@ -2,8 +2,9 @@
  * Responsabilidad: gestionar el los flujos de que recibe y muestra la interfáz
  * */ 
 
-import { getResult, OK , KO } from "./fizzBuzz.js";
+import { fizzBuzz, OK , KO } from "./fizzBuzz.js";
 
+const resultsData = [];
 
 const clearError = () => {
   const errorDiv = document.getElementById('error');
@@ -14,8 +15,10 @@ const clearError = () => {
 const evaluateResult = () => {
   const numberInput = document.getElementById('numberValue');
   const number = numberInput.value;
-  const result = getResult(number); 
+  const result = fizzBuzz(number); 
   const resultDiv = document.getElementById('result');
+
+  resultsData.push(result);
 
   if (result.status === OK) {
       resultDiv.innerHTML += result.data.result + '<br />';
