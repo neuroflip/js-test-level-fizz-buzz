@@ -6,9 +6,13 @@ const prepareSubmitButton = () => {
   button.addEventListener('click', (event) => {
     event.preventDefault();
 
-    clearError();
-    evaluateResult();
-    clearInput();
+    try {
+      clearError();
+      evaluateResult();
+      clearInput();
+    } catch (error) {
+      console.log(error);
+    }
   });
 }
 
