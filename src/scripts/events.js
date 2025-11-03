@@ -1,4 +1,4 @@
-import { evaluateResult, clearError, clearInput } from './dom.js';
+import { evaluateResult, clearError, clearInput, resetData } from './dom.js';
 
 const prepareSubmitButton = () => {
   const button = document.getElementById('submitButton');
@@ -24,6 +24,7 @@ const prepareClearButton = () => {
 
     clearError();
     clearInput();
+    resetData();
   });
 }
 

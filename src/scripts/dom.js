@@ -16,6 +16,7 @@ const clearInput = () => {
 
 const resetData = () => {
   resultsData = [];
+  setResultsInDiv();
 }
 
 const setResultsInDiv = () => {

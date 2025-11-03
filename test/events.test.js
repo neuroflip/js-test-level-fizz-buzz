@@ -1,6 +1,6 @@
 
 import { expect, describe, test, jest } from "@jest/globals";
-import { evaluateResult, clearError, clearInput } from '../src/scripts/dom';
+import { evaluateResult, clearError, clearInput, resetData } from '../src/scripts/dom';
 
 const eventsMocked = {
   prepareClearButton: jest.fn(),
@@ -10,7 +10,8 @@ const eventsMocked = {
 const domMocked = {
   evaluateResult: jest.fn(),
   clearError: jest.fn(),
-  clearInput: jest.fn()
+  clearInput: jest.fn(),
+  resetData: jest.fn()
 };
 
 jest.unstable_mockModule('../src/scripts/events', () => eventsMocked);
@@ -72,10 +73,11 @@ describe('events test', () => {
       expect(evaluateResult).toHaveBeenCalled();
       expect(clearError).toHaveBeenCalled();
       expect(clearInput).toHaveBeenCalled();
+      expect(resetData).not.toHaveBeenCalled();
     });
   });
 
-  test('clear button onClick calls to clearInput and clearError', () => {
+  test('clear button onClick calls to clearInput, clearError and resetData', () => {
     const button = document.getElementById('clearButton');
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -83,6 +85,7 @@ describe('events test', () => {
 
       expect(clearError).toHaveBeenCalled();
       expect(clearInput).toHaveBeenCalled();
+      expect(resetData).toHaveBeenCalled();
     });
   });
 })
