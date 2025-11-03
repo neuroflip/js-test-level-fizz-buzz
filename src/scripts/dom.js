@@ -12,6 +12,12 @@ const clearError = () => {
   errorDiv.textContent = '';
 }
 
+const clearInput = () => {
+  const input = document.getElementById('numberValue');
+
+  input.value = '';
+}
+
 const evaluateResult = () => {
   const numberInput = document.getElementById('numberValue');
   const number = numberInput.value;
@@ -21,7 +27,7 @@ const evaluateResult = () => {
   resultsData.push(result);
 
   if (result.status === OK) {
-      resultDiv.innerHTML += result.data.result + '<br />';
+      resultDiv.innerHTML += `${result.data.number}: ${result.data.result}<br />`;
   } else {
     const errorDiv = document.getElementById('error');
 
@@ -29,5 +35,5 @@ const evaluateResult = () => {
   }
 }
 
-export { evaluateResult, clearError };
+export { evaluateResult, clearError, clearInput };
 

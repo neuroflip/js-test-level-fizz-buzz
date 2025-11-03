@@ -24,14 +24,16 @@ const isMultiple3AndNot5 = (number) => isMultiple3(number) && !isMultiple5(numbe
 const isMultiple5AndNot3 = (number) => isMultiple5(number) && !isMultiple3(number);
 const isMultiple3And5 = (number) => isMultiple3(number) && isMultiple5(number);
 
-const fillResult = (status, message, number, result) => ({
-    status: status,
-    message: message,
-    data: {
-        number: number,
-        result: result
+const fillResult = (status, message, num, result) => {
+    return {
+        status: status,
+        message: message,
+        data: {
+            number: num,
+            result: result
+        }
     }
-});
+};
 
 const isNumericValue = (value) => {
   return !isNaN(Number(value));
@@ -42,13 +44,13 @@ const fizzBuzz = (number) => {
 
     if (isNumericValue(number)) {
         if (isMultiple3AndNot5(number)) {
-        result = fillResult(OK, 'El número es divisible por 3', number, FIZZ);
+            result = fillResult(OK, 'El número es divisible por 3', number, FIZZ);
         } else if (isMultiple5AndNot3(number)) {
-        result = fillResult(OK, 'El número es divisible por 5', number, BUZZ);
+            result = fillResult(OK, 'El número es divisible por 5', number, BUZZ);
         } else if (isMultiple3And5(number)) {
-        result = fillResult(OK, 'El número es divisible por 3 y por 5', number, FIZZBUZZ);
+            result = fillResult(OK, 'El número es divisible por 3 y por 5', number, FIZZBUZZ);
         } else {
-        result = fillResult(OK, 'El número no es divisible por 3 ni por 5', number, number);
+            result = fillResult(OK, 'El número no es divisible por 3 ni por 5', number, number);
         }
     } else {
         result = fillResult(KO, 'El valor de entrada no es un numero', Number.NaN, Number.NaN);
