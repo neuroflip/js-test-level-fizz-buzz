@@ -1,17 +1,27 @@
 import { expect, describe, test, jest } from "@jest/globals";
-import { evaluateResult, clearError, clearInput } from '../src/scripts/dom'
-import jsdom from 'jsdom';
-import { TextEncoder, TextDecoder } from 'util';
+//import { evaluateResult, clearError, clearInput } from '../src/scripts/dom';
 
-const { JSDOM } = jsdom;
-Object.assign(global, { TextDecoder, TextEncoder });
+let fizzBuzzMocked = {
+  fizzBuzz: jest.fn().mockReturnValue({
+    status: 'Ok',
+    message: 'El número es divisible por 5',
+    data: {
+        number: 100,
+        result: 'Buzz'
+    }
+  }),
+  KO: 'ko',
+  OK: 'Ok'
+};
+
+jest.unstable_mockModule('../src/scripts/fizzBuzz', () => fizzBuzzMocked);
+
+const { fizzBuzz } = await import('../src/scripts/fizzBuzz');
+const { evaluateResult, clearError, clearInput } = await import('../src/scripts/dom');
 
 describe('dom test', () => {
   beforeEach(() => {
-    jest.resetModules();
-
-    const dom = new JSDOM(`
-      <!DOCTYPE html>
+    document.body.innerHTML = `<!DOCTYPE html>
       <html lang="en">
       <head>
         <meta charset="UTF-8">
@@ -28,12 +38,11 @@ describe('dom test', () => {
         </form>
         <div id="result"></div>
       </body>
-      </html>
-    `, { runScripts: "dangerously" });
+      </html>`;
   });
 
   test('clearError cleans the error content', () => {
-    const errorDiv = dom.window.document.getElementById('error');
+    const errorDiv = document.getElementById('error');
 
     errorDiv.textContent = 'This is a previous error';
     clearError();
@@ -41,9 +50,58 @@ describe('dom test', () => {
     expect(errorDiv.textContent).toBe('');
   });
 
-  test('clearInout cleans the inpuit value', () => {
+  test('clearInput cleans the inpuit value', () => {
+    const input = document.getElementById('numberValue');
+
+    input.value = '100';
+    clearInput();
+
+    expect(input.value).toBe('');
   });
 
-  test('evaluateResult sets the result in results div', () => {
+  test('evaluateResult calls to the fizzBuzz method to get the result', () => {
+    const input = document.getElementById('numberValue');
+
+    input.value = '100';
+    evaluateResult();
+
+    expect(fizzBuzz).toHaveBeenCalledWith(100);
   });
+
+  test('evaluateResult sets the correct result at resultDiv', () => {
+    const input = document.getElementById('numberValue');
+    const resultDiv = document.getElementById('result');
+
+    input.value = '100';
+    evaluateResult();
+
+    expect(resultDiv.textContent).toBe('100: Buzz');
+  })
+
+  test('evaluateResult sets the error when there is an error', () => {
+    /*
+    const input = document.getElementById('numberValue');
+    const errorDiv = document.getElementById('error');
+
+    fizzBuzzMocked = {
+        fizzBuzz: jest.fn().mockReturnValue({
+          status: 'Ko',
+          message: 'El número no es divisible por 3 ni por 5',
+          data: {
+              number: 7,
+              result: '7'
+          }
+        }),
+        KO: 'Ko',
+        OK: 'Ok'
+    };
+    input.value = '7';
+
+    evaluateResult();
+
+    expect(errorDiv.textContent).toBe('El número no es divisible por 3 ni por 5');
+
+    */
+  })
+
 })

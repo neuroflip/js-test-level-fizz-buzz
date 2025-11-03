@@ -1,6 +1,6 @@
 
 import { expect, describe, test, jest } from "@jest/globals";
-import { evaluateResult, clearError, clearInput } from '../src/scripts/dom'
+import { evaluateResult, clearError, clearInput } from '../src/scripts/dom';
 
 const eventsMocked = {
   prepareClearButton: jest.fn(),
