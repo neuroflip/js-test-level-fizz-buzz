@@ -1,6 +1,6 @@
 import { fizzBuzz, OK , KO } from "./fizzBuzz.js";
 
-const resultsData = [];
+let resultsData = [];
 
 const clearError = () => {
   const errorDiv = document.getElementById('error');
@@ -14,10 +14,18 @@ const clearInput = () => {
   input.value = '';
 }
 
-const setResultInDiv = (text) => {
-  const resultDiv = document.getElementById('result');
+const resetData = () => {
+  resultsData = [];
+}
 
-  resultDiv.innerHTML += text;
+const setResultsInDiv = () => {
+  const resultDiv = document.getElementById('result');
+  let result = '';
+
+  resultsData.forEach((element) => {
+    result += `${element.data.number}: ${element.data.result}<br />`
+  })
+  resultDiv.innerHTML = result;
 }
 
 const evaluateResult = () => {
@@ -31,8 +39,8 @@ const evaluateResult = () => {
     
     errorDiv.textContent = result.message;
   }
-  setResultInDiv(`${result.data.number}: ${result.data.result}<br />`);
+  setResultsInDiv();
 }
 
-export { evaluateResult, clearError, clearInput };
+export { evaluateResult, clearError, clearInput, resetData };
 

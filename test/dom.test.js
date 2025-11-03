@@ -19,6 +19,22 @@ let fizzBuzzMocked = {
       }
     })
     .mockReturnValueOnce({
+      status: 'Ok',
+      message: 'El número es divisible por 5',
+      data: {
+          number: 100,
+          result: 'Buzz'
+      }
+    })
+    .mockReturnValueOnce({
+      status: 'Ko',
+      message: 'El número no es divisible por 3 ni por 5',
+      data: {
+          number: 101,
+          result: 101
+      }
+    })
+    .mockReturnValueOnce({
       status: 'Ko',
       message: 'El número no es divisible por 3 ni por 5',
       data: {
@@ -41,7 +57,7 @@ let fizzBuzzMocked = {
 jest.unstable_mockModule('../src/scripts/fizzBuzz', () => fizzBuzzMocked);
 
 const { fizzBuzz } = await import('../src/scripts/fizzBuzz');
-const { evaluateResult, clearError, clearInput } = await import('../src/scripts/dom');
+const { evaluateResult, clearError, clearInput, resetData } = await import('../src/scripts/dom');
 
 describe('dom test', () => {
   beforeEach(() => {
@@ -63,6 +79,7 @@ describe('dom test', () => {
         <div id="result"></div>
       </body>
       </html>`;
+      resetData();
   });
 
   test('clearError cleans the error content', () => {
@@ -100,6 +117,18 @@ describe('dom test', () => {
     evaluateResult();
 
     expect(resultDiv.textContent).toBe('100: Buzz');
+  })
+
+  test('evaluateResult accumulates the correct result at resultDiv', () => {
+    const input = document.getElementById('numberValue');
+    const resultDiv = document.getElementById('result');
+
+    input.value = '100';
+    evaluateResult();
+    input.value = '101';
+    evaluateResult();
+
+    expect(resultDiv.textContent).toBe('100: Buzz101: 101');
   })
 
   test('evaluateResult sets the error when there is KO result', () => {
