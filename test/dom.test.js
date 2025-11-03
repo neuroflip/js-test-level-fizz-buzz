@@ -2,15 +2,32 @@ import { expect, describe, test, jest } from "@jest/globals";
 //import { evaluateResult, clearError, clearInput } from '../src/scripts/dom';
 
 let fizzBuzzMocked = {
-  fizzBuzz: jest.fn().mockReturnValue({
-    status: 'Ok',
-    message: 'El número es divisible por 5',
-    data: {
-        number: 100,
-        result: 'Buzz'
-    }
-  }),
-  KO: 'ko',
+  fizzBuzz: jest.fn()
+    .mockReturnValueOnce({
+      status: 'Ok',
+      message: 'El número es divisible por 5',
+      data: {
+          number: 100,
+          result: 'Buzz'
+      }
+    })
+    .mockReturnValueOnce({
+      status: 'Ok',
+      message: 'El número es divisible por 5',
+      data: {
+          number: 100,
+          result: 'Buzz'
+      }
+    })
+    .mockReturnValue({
+      status: 'Ko',
+      message: 'El número no es divisible por 3 ni por 5',
+      data: {
+          number: 7,
+          result: 7
+      }
+    }),
+  KO: 'Ko',
   OK: 'Ok'
 };
 
@@ -79,29 +96,14 @@ describe('dom test', () => {
   })
 
   test('evaluateResult sets the error when there is an error', () => {
-    /*
     const input = document.getElementById('numberValue');
     const errorDiv = document.getElementById('error');
+    const resultDiv = document.getElementById('result');
 
-    fizzBuzzMocked = {
-        fizzBuzz: jest.fn().mockReturnValue({
-          status: 'Ko',
-          message: 'El número no es divisible por 3 ni por 5',
-          data: {
-              number: 7,
-              result: '7'
-          }
-        }),
-        KO: 'Ko',
-        OK: 'Ok'
-    };
     input.value = '7';
-
     evaluateResult();
 
     expect(errorDiv.textContent).toBe('El número no es divisible por 3 ni por 5');
-
-    */
+    expect(resultDiv.textContent).toBe('7: 7');
   })
-
 })
