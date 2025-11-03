@@ -1,16 +1,3 @@
-/**
- * Responsabilidad: gestionar la lógica de FizzBuzz
- * Recuerda que la estructura de las respuestas debe ser estructurada:
- *  {
-        status: "", // Código indicando éxito o error
-        message: "", // Mensaje
-        data: {
-            number: 0, // Número evaluado
-            result: "" // Resultado esperado
-            }
-    }
- * */ 
-
 const FIZZ = 'Fizz';
 const BUZZ = 'Buzz';
 const FIZZBUZZ = 'FizzBuzz';
@@ -36,11 +23,11 @@ const fillResult = (status, message, num, result) => {
 };
 
 const isNumericValue = (value) => {
-  return !isNaN(Number(value));
+  return typeof value.length !== "undefined"  ? value.length > 0 && !isNaN(Number(value)) : !isNaN(Number(value));
 }
 
 const fizzBuzz = (number) => {
-    let result; 
+    let result;
 
     if (isNumericValue(number)) {
         if (isMultiple3AndNot5(number)) {
@@ -50,10 +37,8 @@ const fizzBuzz = (number) => {
         } else if (isMultiple3And5(number)) {
             result = fillResult(OK, 'El número es divisible por 3 y por 5', number, FIZZBUZZ);
         } else {
-            result = fillResult(OK, 'El número no es divisible por 3 ni por 5', number, number);
+            result = fillResult(KO, 'El número no es divisible por 3 ni por 5', number, number);
         }
-    } else {
-        result = fillResult(KO, 'El valor de entrada no es un numero', Number.NaN, Number.NaN);
     }
 
     return result;

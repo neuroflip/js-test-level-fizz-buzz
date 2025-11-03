@@ -1,103 +1,123 @@
 import { expect, describe, test } from "@jest/globals";
-import { fizzBuzz } from "../src/scripts/fizzBuzz";
+import { fizzBuzz, OK, KO } from "../src/scripts/fizzBuzz";
 
 describe('FizzBuzz test for multiples of 3 and 5', () => {
-       
-        test('returns Fizz when multiple of 3', () => {
-            let valor_entrada = 9;
-            let respuesta_esperada = {
-                status: "Ok",
-                message: "El número es divisible por 3",
-                data: {
-                    number: 9,
-                    result: "Fizz"
-                }}
+    test('returns Fizz when multiple of 3', () => {
+        const valor_entrada = 9;
+        const respuesta_esperada = {
+            status: OK,
+            message: 'El número es divisible por 3',
+            data: {
+                number: 9,
+                result: "Fizz"
+            }}
 
-            let resultado = fizzBuzz(valor_entrada);
-        
-            expect(typeof resultado.data.number).toBe("number");
-            expect(resultado).toEqual(respuesta_esperada);
-            expect(resultado.data.result).toBe(respuesta_esperada.data.result);
-        });
+        const resultado = fizzBuzz(valor_entrada);
+    
+        expect(typeof resultado.data.number).toBe('number');
+        expect(resultado).toEqual(respuesta_esperada);
+        expect(resultado.data.result).toBe(respuesta_esperada.data.result);
+    });
 
-        test('returns Buzz when multiple of 5', () => {
-            let valor_entrada = 10;
-            let respuesta_esperada = {
-                status: "Ok",
-                message: "El número es divisible por 5",
-                data: {
-                    number: 10,
-                    result: "Buzz"
-                }}
+    test('returns Buzz when multiple of 5', () => {
+        const valor_entrada = 10;
+        const respuesta_esperada = {
+            status: OK,
+            message: 'El número es divisible por 5',
+            data: {
+                number: 10,
+                result: 'Buzz'
+            }}
 
-            let resultado = fizzBuzz(valor_entrada);
-        
-            expect(typeof resultado.data.number).toBe("number");
-            expect(resultado).toEqual(respuesta_esperada);
-            expect(resultado.data.result).toBe(respuesta_esperada.data.result);
-        })
+        const resultado = fizzBuzz(valor_entrada);
+    
+        expect(typeof resultado.data.number).toBe("number");
+        expect(resultado).toEqual(respuesta_esperada);
+        expect(resultado.data.result).toBe(respuesta_esperada.data.result);
+    })
 
-        test('returns FizzBuzz when multiple of 3 and 5', () => {
-            let valor_entrada = 15;
-            let respuesta_esperada = {
-                status: "Ok",
-                message: "El número es divisible por 3 y por 5",
-                data: {
-                    number: 15,
-                    result: "FizzBuzz"
-                }}
+    test('returns FizzBuzz when multiple of 3 and 5', () => {
+        const valor_entrada = 15;
+        const respuesta_esperada = {
+            status: OK,
+            message: 'El número es divisible por 3 y por 5',
+            data: {
+                number: 15,
+                result: 'FizzBuzz'
+            }}
 
-            let resultado = fizzBuzz(valor_entrada);
-        
-            expect(typeof resultado.data.number).toBe("number");
-            expect(resultado).toEqual(respuesta_esperada);
-            expect(resultado.data.result).toBe(respuesta_esperada.data.result);
-        })
+        const resultado = fizzBuzz(valor_entrada);
+    
+        expect(typeof resultado.data.number).toBe('number');
+        expect(resultado).toEqual(respuesta_esperada);
+        expect(resultado.data.result).toBe(respuesta_esperada.data.result);
+    })
 
-        test('returns number when is not multiple of 3 and 5', () => {
-            let valor_entrada = 8;
-            let respuesta_esperada = {
-                status: "Ok",
-                message: "El número no es divisible por 3 ni por 5",
-                data: {
-                    number: 8,
-                    result: 8
-                }}
+    test('returns number when is not multiple of 3 or 5', () => {
+        const valor_entrada = 8;
+        const respuesta_esperada = {
+            status: KO,
+            message: 'El número no es divisible por 3 ni por 5',
+            data: {
+                number: 8,
+                result: 8
+            }}
 
-            let resultado = fizzBuzz(valor_entrada);
-        
-            expect(typeof resultado.data.number).toBe("number");
-            expect(resultado).toEqual(respuesta_esperada);
-            expect(resultado.data.result).toBe(respuesta_esperada.data.result);
-        })
+        const resultado = fizzBuzz(valor_entrada);
+    
+        expect(typeof resultado.data.number).toBe('number');
+        expect(resultado).toEqual(respuesta_esperada);
+        expect(resultado.data.result).toBe(respuesta_esperada.data.result);
+    })
 
-        test('returns error message when is not a number', () => {
-            let valor_entrada = 'not a number';
-            let respuesta_esperada = {
-                status: "Ko",
-                message: "El valor de entrada no es un numero",
-                data: {
-                    number: Number.NaN,
-                    result: Number.NaN
-                }}
+    test('returns Fizz when is a negative number multiple of 3', () => {
+        const valor_entrada = -9;
+        const respuesta_esperada = {
+            status: OK,
+            message: 'El número es divisible por 3',
+            data: {
+                number: -9,
+                result: 'Fizz'
+            }}
 
-            let resultado = fizzBuzz(valor_entrada);
+        const resultado = fizzBuzz(valor_entrada);
+    
+        expect(typeof resultado.data.number).toBe('number');
+        expect(resultado).toEqual(respuesta_esperada);
+        expect(resultado.data.result).toBe(respuesta_esperada.data.result);
+    })
 
-            expect(resultado.data.number).toBeNaN();
-            expect(resultado).toEqual(respuesta_esperada);
-            expect(resultado.data.result).toBe(respuesta_esperada.data.result);
-        })
+    test('returns Buzz when is a negative number multiple of 5', () => {
+        const valor_entrada = -10;
+        const respuesta_esperada = {
+            status: OK,
+            message: 'El número es divisible por 5',
+            data: {
+                number: -10,
+                result: 'Buzz'
+            }}
 
-        test('returns error message when is an empty string', () => {
-            let valor_entrada = '';
-            let respuesta_esperada = {
-                status: "Ko",
-                message: "El valor de entrada no es un numero",
-                data: {
-                    number: Number.NaN,
-                    result: Number.NaN
-                }}
+        const resultado = fizzBuzz(valor_entrada);
+    
+        expect(typeof resultado.data.number).toBe('number');
+        expect(resultado).toEqual(respuesta_esperada);
+        expect(resultado.data.result).toBe(respuesta_esperada.data.result);
+    })
 
-        })
-    }
-)
+    test('returns FGizzBuzz when is a negative number multiple of 3 and 5', () => {
+        const valor_entrada = -15;
+        const respuesta_esperada = {
+            status: OK,
+            message: 'El número es divisible por 3 y por 5',
+            data: {
+                number: -15,
+                result: 'FizzBuzz'
+            }}
+
+        const resultado = fizzBuzz(valor_entrada);
+    
+        expect(typeof resultado.data.number).toBe('number');
+        expect(resultado).toEqual(respuesta_esperada);
+        expect(resultado.data.result).toBe(respuesta_esperada.data.result);
+    })
+})

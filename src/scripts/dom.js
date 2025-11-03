@@ -21,7 +21,7 @@ const clearInput = () => {
 const evaluateResult = () => {
   const numberInput = document.getElementById('numberValue');
   const number = numberInput.value;
-  const result = fizzBuzz(number); 
+  const result = fizzBuzz(Number(number)); 
   const resultDiv = document.getElementById('result');
 
   resultsData.push(result);
@@ -31,6 +31,7 @@ const evaluateResult = () => {
   } else {
     const errorDiv = document.getElementById('error');
 
+    resultDiv.innerHTML += `${result.data.number}: ${result.data.result}<br />`;
     errorDiv.textContent = result.message;
   }
 }

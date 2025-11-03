@@ -27,7 +27,9 @@ const prepareClearButton = () => {
   });
 }
 
-prepareSubmitButton();
-prepareClearButton();
+document.addEventListener("DOMContentLoaded", () => { 
+  prepareSubmitButton();
+  prepareClearButton();
+})
 
 export { prepareClearButton, prepareSubmitButton };
