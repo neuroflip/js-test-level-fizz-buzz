@@ -14,22 +14,24 @@ const clearInput = () => {
   input.value = '';
 }
 
+const setResultInDiv = (text) => {
+  const resultDiv = document.getElementById('result');
+
+  resultDiv.innerHTML += text;
+}
+
 const evaluateResult = () => {
   const numberInput = document.getElementById('numberValue');
-  const number = numberInput.value;
-  const result = fizzBuzz(Number(number)); 
-  const resultDiv = document.getElementById('result');
+  const result = fizzBuzz(numberInput.value); 
 
   resultsData.push(result);
 
-  if (result.status === OK) {
-      resultDiv.innerHTML += `${result.data.number}: ${result.data.result}<br />`;
-  } else {
+  if (result.status === KO) {
     const errorDiv = document.getElementById('error');
-
-    resultDiv.innerHTML += `${result.data.number}: ${result.data.result}<br />`;
+    
     errorDiv.textContent = result.message;
   }
+  setResultInDiv(`${result.data.number}: ${result.data.result}<br />`);
 }
 
 export { evaluateResult, clearError, clearInput };

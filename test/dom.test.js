@@ -89,7 +89,7 @@ describe('dom test', () => {
     input.value = '100';
     evaluateResult();
 
-    expect(fizzBuzz).toHaveBeenCalledWith(100);
+    expect(fizzBuzz).toHaveBeenCalledWith('100');
   });
 
   test('evaluateResult sets the correct result at resultDiv', () => {
