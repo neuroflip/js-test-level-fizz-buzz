@@ -29,3 +29,5 @@ const prepareClearButton = () => {
 
 prepareSubmitButton();
 prepareClearButton();
+
+export { prepareClearButton, prepareSubmitButton };

@@ -14,3 +14,10 @@ Los ejercicios están diseñados para medir la comprensión y aplicación de est
 - Usa JavaScript moderno (ES6+).
 - Recuerda ir un paso a la vez, por eso se dan casos de uso. Logra que funcione uno, luego ve a lo siguiente
 - Puedes consultar en buscadores, no puedes usas ninguna IA ni copiar la solución de ningún lugar. Se busca evaluar tu capacidad de razonamiento y solución de problemas.
+
+
+## Consideraciones:
+- test con jest me ha descolocado
+- hay cambios en la estructura de datos entre el enunciado y el codigo inicial que me han descolocado
+- la manipulacion de los elementops del dom con jest 
+- falta uso de try / catch para gestionar los posibles errores producidos
