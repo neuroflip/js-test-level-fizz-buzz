@@ -19,5 +19,5 @@ Los ejercicios están diseñados para medir la comprensión y aplicación de est
 ## Consideraciones:
 - test con jest me ha descolocado
 - hay cambios en la estructura de datos entre el enunciado y el codigo inicial que me han descolocado
-- la manipulacion de los elementops del dom con jest 
+- la manipulacion de los elementops del dom con jest me ha descolodado
 - falta uso de try / catch para gestionar los posibles errores producidos
