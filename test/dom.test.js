@@ -18,12 +18,20 @@ let fizzBuzzMocked = {
           result: 'Buzz'
       }
     })
-    .mockReturnValue({
+    .mockReturnValueOnce({
       status: 'Ko',
       message: 'El número no es divisible por 3 ni por 5',
       data: {
           number: 7,
           result: 7
+      }
+    })
+    .mockReturnValue({
+      status: 'Ko',
+      message: 'El valor introducino no es un número',
+      data: {
+          number: Number.NaN,
+          result: Number.NaN
       }
     }),
   KO: 'Ko',
@@ -94,7 +102,7 @@ describe('dom test', () => {
     expect(resultDiv.textContent).toBe('100: Buzz');
   })
 
-  test('evaluateResult sets the error when there is an error', () => {
+  test('evaluateResult sets the error when there is KO result', () => {
     const input = document.getElementById('numberValue');
     const errorDiv = document.getElementById('error');
     const resultDiv = document.getElementById('result');
@@ -104,5 +112,17 @@ describe('dom test', () => {
 
     expect(errorDiv.textContent).toBe('El número no es divisible por 3 ni por 5');
     expect(resultDiv.textContent).toBe('7: 7');
+  })
+
+  test('evaluateResult sets the error when there is KO result with a string as input', () => {
+    const input = document.getElementById('numberValue');
+    const errorDiv = document.getElementById('error');
+    const resultDiv = document.getElementById('result');
+
+    input.value = 'not a number';
+    evaluateResult();
+
+    expect(errorDiv.textContent).toBe('El valor introducino no es un número');
+    expect(resultDiv.textContent).toBe('NaN: NaN');
   })
 })

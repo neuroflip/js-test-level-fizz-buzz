@@ -39,6 +39,8 @@ const fizzBuzz = (number) => {
         } else {
             result = fillResult(KO, 'El número no es divisible por 3 ni por 5', number, number);
         }
+    } else {
+        result = fillResult(KO, 'El valor introducino no es un número', Number.NaN, Number.NaN);
     }
 
     return result;

@@ -104,7 +104,7 @@ describe('FizzBuzz test for multiples of 3 and 5', () => {
         expect(resultado.data.result).toBe(respuesta_esperada.data.result);
     })
 
-    test('returns FGizzBuzz when is a negative number multiple of 3 and 5', () => {
+    test('returns FizzBuzz when is a negative number multiple of 3 and 5', () => {
         const valor_entrada = -15;
         const respuesta_esperada = {
             status: OK,
@@ -120,4 +120,22 @@ describe('FizzBuzz test for multiples of 3 and 5', () => {
         expect(resultado).toEqual(respuesta_esperada);
         expect(resultado.data.result).toBe(respuesta_esperada.data.result);
     })
+
+    test('returns NaN values when is not a numeric value', () => {
+        const valor_entrada = 'not a number';
+        const respuesta_esperada = {
+            status: KO,
+            message: 'El valor introducino no es un número',
+            data: {
+                number: Number.NaN,
+                result: Number.NaN
+            }}
+
+        const resultado = fizzBuzz(valor_entrada);
+    
+        expect(typeof resultado.data.number).toBe('number');
+        expect(resultado).toEqual(respuesta_esperada);
+        expect(resultado.data.result).toBe(respuesta_esperada.data.result);
+    })
+
 })
